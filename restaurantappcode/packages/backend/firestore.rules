@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read: if request.auth.uid == userId || request.auth.uid != null;
+      allow write: if request.auth.uid == userId;
+    }
+    match /menuItems/{itemId} {
+      allow read: if true;
+      allow write: if request.auth.uid != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    match /orders/{orderId} {
+      allow read: if request.auth.uid != null && (resource.data.customerId == request.auth.uid || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
+      allow create: if request.auth.uid != null && request.resource.data.customerId == request.auth.uid;
+      allow update: if request.auth.uid != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    match /discounts/{discountId} {
+      allow read: if true;
+      allow write: if request.auth.uid != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    match /restaurants/{restaurantId} {
+      allow read: if true;
+      allow write: if request.auth.uid != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
