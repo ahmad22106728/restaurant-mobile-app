@@ -9,17 +9,20 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~3.2.3",
+    "@react-navigation/bottom-tabs": "^6.5.0",
+    "@react-navigation/native": "^6.1.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@restaurant/shared": "*",
     "expo": "^51.0.0",
     "expo-constants": "~16.0.2",
     "expo-status-bar": "~1.12.1",
-    "react": "18.2.0",
-    "react-native": "0.74.1",
-    "@react-navigation/native": "^6.1.0",
-    "@react-navigation/bottom-tabs": "^6.5.0",
-    "@reduxjs/toolkit": "^1.9.5",
-    "react-redux": "^8.1.1",
     "firebase": "^10.4.0",
-    "@restaurant/shared": "*"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.1",
+    "react-native-web": "~0.19.10",
+    "react-redux": "^8.1.1"
   },
   "devDependencies": {
     "@types/react": "~18.2.37",
